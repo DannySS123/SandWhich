@@ -15,7 +15,14 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
   const removeFromFavourites = (b: Hamburger) => {
     setFavourites(favourites.filter((burger) => burger.id !== b.id));
   };
-  const getBurger = (id: string) => burgers.find((b) => b.id === parseInt(id));
+  const getBurger = (id: string): Hamburger | undefined => {
+    const burger = burgers.find((b) => b.id === parseInt(id));
+    if (!burger) return undefined;
+    return {
+      ...burger,
+      favourite: favourites.some((b) => b.id === parseInt(id)),
+    };
+  };
   const getBurgers = (t: HamburgerType) =>
     t === HamburgerType.FAVOURITE
       ? favourites

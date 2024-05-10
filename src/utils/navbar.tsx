@@ -3,6 +3,7 @@ import { ShoppingCart } from "@mui/icons-material";
 import SideMenu from "./sideMenu";
 import { useContext } from "react";
 import { CartContext } from "../contexts/cart-context";
+import { Link } from "react-router-dom";
 
 export default function Navbar() {
   const { cart } = useContext(CartContext);
@@ -18,13 +19,15 @@ export default function Navbar() {
       }}
     >
       <SideMenu />
-      <Button href="/">
+      <Link to="/">
         <Typography variant="h5">SandWhich</Typography>
-      </Button>
-      <Button href="/cart">
-        <ShoppingCart />
-        <Typography sx={{ mr: 1 }}>{cart.length}</Typography>
-      </Button>
+      </Link>
+      <Link to="/cart">
+        <Button>
+          <ShoppingCart />
+          <Typography sx={{ mr: 1 }}>{cart.length}</Typography>
+        </Button>
+      </Link>
     </Stack>
   );
 }

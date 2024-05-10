@@ -7,6 +7,7 @@ export interface Hamburger {
   price: number;
   bunType: string;
   type: HamburgerType;
+  favourite?: boolean;
 }
 
 export enum HamburgerType {

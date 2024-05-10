@@ -17,12 +17,13 @@ import {
   ShoppingCart,
 } from "@mui/icons-material";
 import { useContext, useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { Hamburger } from "../types";
 import { CartContext } from "../contexts/cart-context";
 
 export default function ItemPage() {
   const [count, setCount] = useState(0);
+  const nav = useNavigate();
   const [favorite, setFavorite] = useState(false);
   const { id } = useParams();
   const [burger, setBurger] = useState<Hamburger | undefined>();
@@ -30,7 +31,9 @@ export default function ItemPage() {
     useContext(CartContext);
 
   useEffect(() => {
-    setBurger(getBurger(id ?? "0"));
+    const burger = getBurger(id ?? "0");
+    setBurger(burger);
+    setFavorite(!!burger?.favourite);
   }, [getBurger, id]);
 
   const handleRemove = () => {
@@ -44,7 +47,7 @@ export default function ItemPage() {
   };
 
   const handleEdit = () => {
-    console.log("navigate to edit page");
+    nav(`/burger/${id}/edit`);
   };
 
   const handleFavourite = () => {
@@ -85,9 +88,9 @@ export default function ItemPage() {
               <Typography>{burger?.name}</Typography>
             </Stack>
             <List>
-              <ListItem>{burger?.bunType}</ListItem>
+              <ListItem>{burger?.bunType} bun</ListItem>
               {burger?.toppings.map((t) => (
-                <ListItem>{t.name}</ListItem>
+                <ListItem key={t.name}>{t.name}</ListItem>
               ))}
             </List>
           </Stack>

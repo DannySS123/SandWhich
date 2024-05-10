@@ -13,24 +13,7 @@ import { CartContext } from "../contexts/cart-context";
 import { useParams } from "react-router-dom";
 import { Hamburger } from "../types";
 
-const bunTypes = [
-  {
-    value: "normal",
-    name: "Normal",
-  },
-  {
-    value: "sezame",
-    name: "Sezame seeds",
-  },
-  {
-    value: "wholewheat",
-    name: "Wholewheat",
-  },
-  {
-    value: "rye",
-    name: "Rye",
-  },
-];
+const bunTypes = ["Normal", "Sezame seeds", "Wholewheat", "Rye"];
 export const BurgerEdit = () => {
   const [burger, setBurger] = useState<Hamburger | undefined>();
   const { id } = useParams();
@@ -38,7 +21,7 @@ export const BurgerEdit = () => {
   const { getBurger } = useContext(CartContext);
 
   useEffect(() => {
-    setBurger(getBurger(id));
+    setBurger(getBurger(id ?? "0"));
     setBun(burger?.bunType ?? "normal");
   }, [burger, id, getBurger]);
 
@@ -63,7 +46,7 @@ export const BurgerEdit = () => {
             onChange={onBunChange}
           >
             {bunTypes.map((bt) => (
-              <MenuItem value={bt.value}>{bt.name}</MenuItem>
+              <MenuItem value={bt}>{bt}</MenuItem>
             ))}
           </Select>
         </FormControl>
