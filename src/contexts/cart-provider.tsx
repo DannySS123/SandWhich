@@ -7,8 +7,15 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
   const [extraBurgers, setExtraBurgers] = useState<Hamburger[]>([]);
   const [favourites, setFavourites] = useState<Hamburger[]>([]);
 
-  const addToCart = (b: Hamburger) => {
-    setCart([...cart, b]);
+  const addToCart = (b: Hamburger, amount = 1) => {
+    const toAdd = [];
+    for (let i = 0; i < amount; i++) {
+      toAdd.push(b);
+    }
+    setCart([...cart, ...toAdd]);
+  };
+  const clearCart = () => {
+    setCart([]);
   };
   const addToFavourites = (b: Hamburger) => {
     setFavourites([...favourites, b]);
@@ -43,6 +50,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
         addToFavourites,
         addExtraBurger,
         cart,
+        clearCart,
         removeFromFavourites,
       }}
     >
@@ -86,30 +94,30 @@ const burgers: Hamburger[] = [
     bunType: "Normal",
   },
   {
-    id: 2,
+    id: "2",
     name: "Spicy Burger",
     description: "very spicy",
     price: 15,
     toppings: [chicken, Lettuce, Tomato],
     type: HamburgerType.REGULAR,
-    bunType: "normal",
+    bunType: "Normal",
   },
   {
-    id: 3,
+    id: "3",
     name: "Vegan Burger",
     description: "not finom",
     price: 10,
     toppings: [Mayo, Lettuce, Tomato],
     type: HamburgerType.REGULAR,
-    bunType: "sesamee",
+    bunType: "Sezame seeds",
   },
   {
-    id: 4,
+    id: "4",
     name: "Vegan Burger Coupon",
     description: "very not finom",
     price: 2,
     toppings: [Lettuce, Tomato],
     type: HamburgerType.COUPON,
-    bunType: "sesamee",
+    bunType: "Sezame seeds",
   },
 ];

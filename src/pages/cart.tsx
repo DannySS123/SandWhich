@@ -13,7 +13,7 @@ export const Cart = () => {
   return (
     <Stack gap={2}>
       <Typography variant="h5">Your cart</Typography>
-      <Typography>Items:</Typography>
+      <Typography>Items</Typography>
       <Stack>
         {cart.map((item) => (
           <Stack
@@ -21,6 +21,7 @@ export const Cart = () => {
             flexDirection="row"
             justifyContent="space-between"
             p={1}
+            key={item.id}
           >
             <Stack flexDirection="row">
               <img
@@ -35,6 +36,11 @@ export const Cart = () => {
             </Stack>
           </Stack>
         ))}
+        {cart.length === 0 && (
+          <Typography fontStyle="italic" textAlign="center">
+            Your cart is empty!
+          </Typography>
+        )}
       </Stack>
       <Stack flexDirection="row" justifyContent="space-between">
         <Typography>Total:</Typography>
@@ -43,6 +49,7 @@ export const Cart = () => {
       <Button
         onClick={() => navigate("/payment")}
         variant="contained"
+        disabled={cart.length === 0}
         sx={{ borderRadius: 4, width: "fit-content", alignSelf: "center" }}
       >
         Go to payment

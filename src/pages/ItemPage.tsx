@@ -5,6 +5,8 @@ import {
   Typography,
   IconButton as MuiIconButton,
   Button,
+  Alert,
+  Snackbar,
 } from "@mui/material";
 import viteLogo from "/vite.svg";
 import IconButton from "../utils/iconButton";
@@ -22,6 +24,7 @@ import { Hamburger } from "../types";
 import { CartContext } from "../contexts/cart-context";
 
 export default function ItemPage() {
+  const [snackOpen, setSnackOpen] = useState(false);
   const [count, setCount] = useState(1);
   const nav = useNavigate();
   const [favorite, setFavorite] = useState(false);
@@ -62,12 +65,21 @@ export default function ItemPage() {
   };
 
   const handleAddToCart = () => {
-    if (burger) {
-      for (let i = 0; i < count; i++) {
-        addToCart(burger);
-      }
+    if (burger && count > 0) {
+      addToCart(burger, count);
       setCount(0);
+      setSnackOpen(true);
     }
+  };
+
+  const handleClose = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackOpen(false);
   };
 
   return (
@@ -115,6 +127,16 @@ export default function ItemPage() {
           <Edit />
         </IconButton>
       </Stack>
+      <Snackbar open={snackOpen} autoHideDuration={2000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          Items added to cart!
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 }

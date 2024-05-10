@@ -5,7 +5,7 @@ export interface Hamburger {
   toppings: Topping[];
   description: string;
   price: number;
-  bunType: string;
+  bunType: "Normal" | "Sezame seeds" | "Wholewheat" | "Rye" | string;
   type: HamburgerType;
   favourite?: boolean;
 }

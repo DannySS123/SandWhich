@@ -1,37 +1,81 @@
 import {
+  Alert,
   Button,
   FormControl,
   FormControlLabel,
   Radio,
   RadioGroup,
+  Snackbar,
   Stack,
+  TextField,
   Typography,
 } from "@mui/material";
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { CartContext } from "../contexts/cart-context";
+import { useNavigate } from "react-router-dom";
 
 export const PaymentPage = () => {
+  const [submitted, setSubmitted] = useState(false);
+  const [city, setCity] = useState("");
+  const [street, setStreet] = useState("");
+  const [house, setHouse] = useState("");
   const [value, setValue] = useState("0");
+  const [snackOpen, setSnackOpen] = useState(false);
+  const { clearCart } = useContext(CartContext);
+  const nav = useNavigate();
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setValue((event.target as HTMLInputElement).value);
   };
 
+  const handleOrder = () => {
+    if (!city || !street || !house) {
+      setSubmitted(true);
+      return;
+    }
+    clearCart();
+    setSnackOpen(true);
+  };
+
+  const handleClose = (
+    _event?: React.SyntheticEvent | Event,
+    reason?: string
+  ) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackOpen(false);
+    nav("/");
+  };
+
   return (
     <Stack gap={2}>
-      <Typography variant="h5">Adress</Typography>
+      <Typography variant="h5">Address</Typography>
       <Stack gap={1} mb={2}>
-        <Stack flexDirection="row" justifyContent="space-between">
-          <Typography>City</Typography>
-          <input></input>
-        </Stack>
-        <Stack flexDirection="row" justifyContent="space-between">
-          <Typography>Street</Typography>
-          <input></input>
-        </Stack>
-        <Stack flexDirection="row" justifyContent="space-between">
-          <Typography>House</Typography>
-          <input></input>
-        </Stack>
+        <TextField
+          label="City"
+          value={city}
+          onChange={(e) => setCity(e.target.value)}
+          variant="outlined"
+          required
+          error={submitted && !city}
+        />
+        <TextField
+          label="Street"
+          value={street}
+          onChange={(e) => setStreet(e.target.value)}
+          variant="outlined"
+          required
+          error={submitted && !street}
+        />
+        <TextField
+          label="House"
+          value={house}
+          onChange={(e) => setHouse(e.target.value)}
+          variant="outlined"
+          required
+          error={submitted && !house}
+        />
       </Stack>
       <FormControl>
         <Typography variant="h5">Payment method</Typography>
@@ -49,9 +93,20 @@ export const PaymentPage = () => {
       <Button
         variant="contained"
         sx={{ borderRadius: 4, width: "fit-content", alignSelf: "center" }}
+        onClick={handleOrder}
       >
         Order
       </Button>
+      <Snackbar open={snackOpen} autoHideDuration={2000} onClose={handleClose}>
+        <Alert
+          onClose={handleClose}
+          severity="success"
+          variant="filled"
+          sx={{ width: "100%" }}
+        >
+          We've received your order!
+        </Alert>
+      </Snackbar>
     </Stack>
   );
 };
