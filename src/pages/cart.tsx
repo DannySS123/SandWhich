@@ -1,11 +1,12 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Button, IconButton, Stack, Typography } from "@mui/material";
 import { useContext } from "react";
 import { CartContext } from "../contexts/cart-context";
 import viteLogo from "/vite.svg";
 import { useNavigate } from "react-router-dom";
+import { Delete } from "@mui/icons-material";
 
 export const Cart = () => {
-  const { cart } = useContext(CartContext);
+  const { cart, removeFromCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const sumPrice = cart.reduce((sum, current) => (sum += current.price), 0);
@@ -25,7 +26,7 @@ export const Cart = () => {
             p={1}
             key={item.id}
           >
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={1}>
               <img
                 src={item.picPath ?? viteLogo}
                 className="logo"
@@ -33,8 +34,11 @@ export const Cart = () => {
               />
               <p>{item.name}</p>
             </Stack>
-            <Stack flexDirection="row">
+            <Stack flexDirection="row" gap={1}>
               <p>{item.price}$</p>
+              <IconButton onClick={() => removeFromCart(item)}>
+                <Delete color="error" />
+              </IconButton>
             </Stack>
           </Stack>
         ))}

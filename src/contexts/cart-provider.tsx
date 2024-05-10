@@ -2,6 +2,7 @@ import { PropsWithChildren, useEffect, useState } from "react";
 import { Hamburger, HamburgerType } from "../types";
 import { CartContext } from "./cart-context";
 import { burgers } from "./mock-data";
+import { v4 as uuidv4 } from "uuid";
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<Hamburger[]>([]);
@@ -28,12 +29,20 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
   const addToCart = (b: Hamburger, amount = 1) => {
     const toAdd = [];
     for (let i = 0; i < amount; i++) {
-      toAdd.push(b);
+      const newBurger = { ...b, id: uuidv4() };
+      toAdd.push(newBurger);
     }
     const newCart = [...cart, ...toAdd];
     setCart(newCart);
     localStorage.setItem("cart", JSON.stringify(newCart));
   };
+
+  const removeFromCart = (b: Hamburger) => {
+    const newCart = cart.filter((burger) => burger.id !== b.id);
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
+  };
+
   const clearCart = () => {
     setCart([]);
     localStorage.setItem("cart", JSON.stringify([]));
@@ -72,6 +81,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     <CartContext.Provider
       value={{
         addToCart,
+        removeFromCart,
         getBurger,
         getBurgers,
         addToFavourites,
