@@ -1,6 +1,7 @@
 import { Stack } from "@mui/material";
 
-import { ShoppingCart, Menu } from "@mui/icons-material";
+import { ShoppingCart } from "@mui/icons-material";
+import SideMenu from "./sideMenu";
 
 export default function Navbar() {
   return (
@@ -12,7 +13,7 @@ export default function Navbar() {
         p: 1,
       }}
     >
-      <Menu />
+      <SideMenu />
       <ShoppingCart />
     </Stack>
   );
