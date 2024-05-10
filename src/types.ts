@@ -1,5 +1,5 @@
 export interface Hamburger {
-  id: number;
+  id: string;
   picPath?: string;
   name: string;
   toppings: Topping[];
