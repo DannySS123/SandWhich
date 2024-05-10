@@ -1,5 +1,4 @@
-import { Stack, Typography } from "@mui/material";
-
+import { Button, Stack, Typography } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import SideMenu from "./sideMenu";
 
@@ -16,7 +15,9 @@ export default function Navbar() {
     >
       <SideMenu />
       <Typography variant="h5">SandWhich</Typography>
-      <ShoppingCart sx={{ mr: 2 }} />
+      <Button href="/cart">
+        <ShoppingCart sx={{ mr: 2 }} />
+      </Button>
     </Stack>
   );
 }

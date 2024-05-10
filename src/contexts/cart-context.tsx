@@ -6,6 +6,7 @@ export type CartContextType = {
   addToCart: (burger: Hamburger) => void;
   addToFavourites: (burger: Hamburger) => void;
   getBurgers: (type: HamburgerType) => Hamburger[];
+  cart: Hamburger[];
 };
 
 export const CartContext = createContext<CartContextType>({
@@ -13,4 +14,5 @@ export const CartContext = createContext<CartContextType>({
   addToCart: () => undefined,
   getBurger: () => undefined,
   getBurgers: () => [],
+  cart: [],
 });

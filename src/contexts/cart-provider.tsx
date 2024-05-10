@@ -25,6 +25,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
         getBurger,
         getBurgers,
         addToFavourites,
+        cart,
       }}
     >
       {children}
