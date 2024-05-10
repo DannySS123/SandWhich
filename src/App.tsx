@@ -1,13 +1,23 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 
 import "./App.css";
 import { Chip, Grid, Stack } from "@mui/material";
 import ItemCard from "./utils/ItemCard";
+import { Hamburger, HamburgerType } from "./types";
+import { CartContext } from "./contexts/cart-context";
 
 function App() {
-  const [activeChip, setActiveChip] = useState(0);
-  const handleChipClick = (num: number) => {
-    setActiveChip(num);
+  const [activeChip, setActiveChip] = useState(HamburgerType.REGULAR);
+  const [burgers, setBurgers] = useState<Hamburger[]>([]);
+  const { getBurgers } = useContext(CartContext);
+
+  useEffect(() => {
+    setBurgers(getBurgers(HamburgerType.REGULAR));
+  }, [getBurgers]);
+
+  const handleChipClick = (type: HamburgerType) => {
+    setActiveChip(type);
+    setBurgers(getBurgers(type));
   };
 
   const mockBurgers = [
@@ -43,34 +53,27 @@ function App() {
 
   const mockFavorites = ["Spicy Burger", "Family Pack"];
 
-  const getItems = () => {
-    switch (activeChip) {
-      case 0:
-        return mockBurgers;
-      case 1:
-        return mockCoupons;
-      case 2:
-        return mockFavorites;
-    }
-  };
-
   return (
     <>
       <Stack
         sx={{ flexDirection: "row", justifyContent: "space-evenly", my: 1 }}
       >
-        {["Regular", "Coupons", "Favorites"].map((item, idx) => (
+        {[
+          HamburgerType.REGULAR,
+          HamburgerType.COUPON,
+          HamburgerType.FAVOURITE,
+        ].map((item) => (
           <Chip
             label={item}
-            variant={activeChip === idx ? "filled" : "outlined"}
-            onClick={() => handleChipClick(idx)}
+            variant={activeChip === item ? "filled" : "outlined"}
+            onClick={() => handleChipClick(item)}
           />
         ))}
       </Stack>
       <Grid container spacing={2}>
-        {getItems()?.map((burger) => (
+        {burgers.map((burger) => (
           <Grid item xs={6}>
-            <ItemCard title={burger} logo={""} />
+            <ItemCard burger={burger} />
           </Grid>
         ))}
       </Grid>
