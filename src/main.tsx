@@ -4,6 +4,7 @@ import App from "./App.tsx";
 import "./index.css";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import Layout from "./utils/layout.tsx";
+import ItemPage from "./pages/ItemPage.tsx";
 
 const router = createBrowserRouter([
   {
@@ -11,8 +12,8 @@ const router = createBrowserRouter([
     element: <App />,
   },
   {
-    path: "/asd",
-    element: <p>asd</p>,
+    path: "/burger/:id",
+    element: <ItemPage />,
   },
 ]);
 

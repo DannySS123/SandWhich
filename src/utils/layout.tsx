@@ -6,7 +6,9 @@ export default function Layout({ children }: PropsWithChildren) {
   return (
     <div>
       <Navbar />
-      <Box mx={1}>{children}</Box>
+      <Box mx={1} mt={1}>
+        {children}
+      </Box>
     </div>
   );
 }
