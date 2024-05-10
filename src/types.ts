@@ -11,9 +11,9 @@ export interface Hamburger {
 }
 
 export enum HamburgerType {
-  REGULAR = "regular",
-  COUPON = "coupon",
-  FAVOURITE = "favourite",
+  REGULAR = "Regular",
+  COUPON = "Coupon",
+  FAVOURITE = "Favourites",
 }
 
 export interface Topping {

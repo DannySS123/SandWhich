@@ -84,7 +84,7 @@ export default function ItemPage() {
 
   return (
     <Stack height="100%" justifyContent="space-between">
-      <Stack gap={4}>
+      <Stack gap={2}>
         <Stack flexDirection="row" gap={4}>
           <img
             src={burger?.picPath ?? viteLogo}
@@ -94,15 +94,19 @@ export default function ItemPage() {
           />
           <Stack>
             <Stack flexDirection="row" alignItems="center">
+              <Typography variant="h1" fontSize={25} fontWeight="bold">
+                {burger?.name}
+              </Typography>
               <MuiIconButton onClick={handleFavourite}>
                 {favorite ? <Star /> : <StarBorder />}
               </MuiIconButton>
-              <Typography>{burger?.name}</Typography>
             </Stack>
             <List>
-              <ListItem>{burger?.bunType} bun</ListItem>
+              <ListItem sx={{ padding: "4px" }}>{burger?.bunType} bun</ListItem>
               {burger?.toppings.map((t) => (
-                <ListItem key={t.name}>{t.name}</ListItem>
+                <ListItem sx={{ padding: "4px" }} key={t.name}>
+                  {t.name}
+                </ListItem>
               ))}
             </List>
           </Stack>
@@ -120,7 +124,11 @@ export default function ItemPage() {
             <Add />
           </IconButton>
         </Stack>
-        <Button startIcon={<ShoppingCart />} onClick={handleAddToCart}>
+        <Button
+          sx={{ fontWeight: "bold" }}
+          startIcon={<ShoppingCart />}
+          onClick={handleAddToCart}
+        >
           Add to cart
         </Button>
         <IconButton onClick={handleEdit}>
@@ -132,7 +140,7 @@ export default function ItemPage() {
           onClose={handleClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", fontWeight: "bold" }}
         >
           Items added to cart!
         </Alert>

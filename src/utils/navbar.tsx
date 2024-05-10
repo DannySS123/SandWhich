@@ -1,4 +1,4 @@
-import { Button, Stack, Typography } from "@mui/material";
+import { Badge, Button, Stack, Typography } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import SideMenu from "./sideMenu";
 import { useContext } from "react";
@@ -16,16 +16,20 @@ export default function Navbar() {
         flexDirection: "row",
         p: 1,
         alignItems: "center",
+        color: "white",
       }}
     >
       <SideMenu />
-      <Link to="/">
-        <Typography variant="h5">SandWhich</Typography>
+      <Link to="/" style={{ textDecoration: "none" }}>
+        <Typography color="white" variant="h5">
+          SandWhich
+        </Typography>
       </Link>
       <Link to="/cart">
         <Button>
-          <ShoppingCart />
-          <Typography sx={{ mr: 1 }}>{cart.length}</Typography>
+          <Badge badgeContent={cart.length} showZero color="error">
+            <ShoppingCart sx={{ color: "white" }} />
+          </Badge>
         </Button>
       </Link>
     </Stack>

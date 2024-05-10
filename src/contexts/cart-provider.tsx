@@ -1,32 +1,59 @@
-import { PropsWithChildren, useState } from "react";
-import { Hamburger, HamburgerType, Topping } from "../types";
+import { PropsWithChildren, useEffect, useState } from "react";
+import { Hamburger, HamburgerType } from "../types";
 import { CartContext } from "./cart-context";
+import { burgers } from "./mock-data";
 
 export const CartProvider = ({ children }: PropsWithChildren) => {
   const [cart, setCart] = useState<Hamburger[]>([]);
   const [extraBurgers, setExtraBurgers] = useState<Hamburger[]>([]);
   const [favourites, setFavourites] = useState<Hamburger[]>([]);
 
+  useEffect(() => {
+    const cartFromStorage = localStorage.getItem("cart");
+    if (cartFromStorage) {
+      setCart(JSON.parse(cartFromStorage));
+    }
+
+    const extrasFromStorage = localStorage.getItem("extras");
+    if (extrasFromStorage) {
+      setExtraBurgers(JSON.parse(extrasFromStorage));
+    }
+
+    const favsFromStorage = localStorage.getItem("favs");
+    if (favsFromStorage) {
+      setFavourites(JSON.parse(favsFromStorage));
+    }
+  }, []);
+
   const addToCart = (b: Hamburger, amount = 1) => {
     const toAdd = [];
     for (let i = 0; i < amount; i++) {
       toAdd.push(b);
     }
-    setCart([...cart, ...toAdd]);
+    const newCart = [...cart, ...toAdd];
+    setCart(newCart);
+    localStorage.setItem("cart", JSON.stringify(newCart));
   };
   const clearCart = () => {
     setCart([]);
+    localStorage.setItem("cart", JSON.stringify([]));
   };
   const addToFavourites = (b: Hamburger) => {
-    setFavourites([...favourites, b]);
+    const newFavs = [...favourites, b];
+    setFavourites(newFavs);
+    localStorage.setItem("favs", JSON.stringify(newFavs));
+  };
+  const removeFromFavourites = (b: Hamburger) => {
+    const newFavs = favourites.filter((burger) => burger.id !== b.id);
+    setFavourites(newFavs);
+    localStorage.setItem("favs", JSON.stringify(newFavs));
   };
   const addExtraBurger = (b: Hamburger) => {
-    setExtraBurgers([...extraBurgers, b]);
+    const newExtras = [...extraBurgers, b];
+    setExtraBurgers(newExtras);
+    localStorage.setItem("extras", JSON.stringify(newExtras));
   };
 
-  const removeFromFavourites = (b: Hamburger) => {
-    setFavourites(favourites.filter((burger) => burger.id !== b.id));
-  };
   const getBurger = (id: string): Hamburger | undefined => {
     const burger =
       burgers.find((b) => b.id === id) ?? extraBurgers.find((b) => b.id === id);
@@ -58,66 +85,3 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
     </CartContext.Provider>
   );
 };
-
-const chicken: Topping = {
-  name: "Chicken",
-  picPath: "",
-};
-
-const Mayo: Topping = {
-  name: "Mayo",
-  picPath: "",
-};
-const Lettuce: Topping = {
-  name: "Lettuce",
-  picPath: "",
-};
-const Tomato: Topping = {
-  name: "Tomato",
-  picPath: "",
-};
-const Onion: Topping = {
-  name: "Onion",
-  picPath: "",
-};
-
-export const allToppings = [chicken, Mayo, Lettuce, Tomato, Onion];
-
-const burgers: Hamburger[] = [
-  {
-    id: "1",
-    name: "McCrispy",
-    description: "finom",
-    price: 12,
-    toppings: [chicken, Mayo, Lettuce, Tomato],
-    type: HamburgerType.REGULAR,
-    bunType: "Normal",
-  },
-  {
-    id: "2",
-    name: "Spicy Burger",
-    description: "very spicy",
-    price: 15,
-    toppings: [chicken, Lettuce, Tomato],
-    type: HamburgerType.REGULAR,
-    bunType: "Normal",
-  },
-  {
-    id: "3",
-    name: "Vegan Burger",
-    description: "not finom",
-    price: 10,
-    toppings: [Mayo, Lettuce, Tomato],
-    type: HamburgerType.REGULAR,
-    bunType: "Sezame seeds",
-  },
-  {
-    id: "4",
-    name: "Vegan Burger Coupon",
-    description: "very not finom",
-    price: 2,
-    toppings: [Lettuce, Tomato],
-    type: HamburgerType.COUPON,
-    bunType: "Sezame seeds",
-  },
-];

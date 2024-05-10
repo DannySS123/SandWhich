@@ -1,4 +1,4 @@
-import { Check, Close, Image } from "@mui/icons-material";
+import { Check, Close } from "@mui/icons-material";
 import {
   SelectChangeEvent,
   Stack,
@@ -13,9 +13,9 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext } from "../contexts/cart-context";
 import { useNavigate, useParams } from "react-router-dom";
 import { Hamburger, Topping } from "../types";
-import { allToppings } from "../contexts/cart-provider";
 import IconButton from "../utils/iconButton";
 import { v4 as uuidv4 } from "uuid";
+import { allToppings } from "../contexts/mock-data";
 
 const bunTypes = ["Normal", "Sezame seeds", "Wholewheat", "Rye"];
 export const BurgerEdit = () => {
@@ -48,7 +48,7 @@ export const BurgerEdit = () => {
   };
 
   const handleCancel = () => {
-    nav(`/burgers/${id}`);
+    nav(`/burger/${id}`);
   };
 
   const handleToppingChange = (t: Topping) => {
@@ -66,31 +66,26 @@ export const BurgerEdit = () => {
   if (!burger) return null;
   return (
     <Stack flexDirection="column" gap={2}>
-      <Typography variant="h1" fontSize="40px">
-        Customize
+      <Typography variant="h1" fontSize={25} fontWeight="bold">
+        Customize {burger.name}
       </Typography>
+      <FormControl fullWidth>
+        <InputLabel id="bun">Select bun type</InputLabel>
+        <Select
+          labelId="bun"
+          value={burger.bunType}
+          label="Select bun type"
+          onChange={onBunChange}
+        >
+          {bunTypes.map((bt) => (
+            <MenuItem key={bt} value={bt}>
+              {bt}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
       <div>
-        <Typography variant="h3" fontSize="16px" mb={1}>
-          Bun
-        </Typography>
-        <FormControl fullWidth>
-          <InputLabel id="bun">Select bun type</InputLabel>
-          <Select
-            labelId="bun"
-            value={burger.bunType}
-            label="Select bun type"
-            onChange={onBunChange}
-          >
-            {bunTypes.map((bt) => (
-              <MenuItem key={bt} value={bt}>
-                {bt}
-              </MenuItem>
-            ))}
-          </Select>
-        </FormControl>
-      </div>
-      <div>
-        <Typography variant="h3" fontSize="16px">
+        <Typography fontWeight="bold" variant="h3" fontSize="16px">
           Toppings
         </Typography>
 
@@ -102,8 +97,8 @@ export const BurgerEdit = () => {
             alignItems="center"
           >
             <Stack flexDirection="row" alignItems="center" gap={2}>
-              <Image href={t.picPath} />
-              <p>{t.name}</p>
+              <img src={t.picPath} />
+              <Typography>{t.name}</Typography>
             </Stack>
             <Checkbox
               checked={burger.toppings.includes(t)}

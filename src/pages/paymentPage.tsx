@@ -50,7 +50,9 @@ export const PaymentPage = () => {
 
   return (
     <Stack gap={2}>
-      <Typography variant="h5">Address</Typography>
+      <Typography variant="h2" fontSize={25} fontWeight="bold">
+        Address
+      </Typography>
       <Stack gap={1} mb={2}>
         <TextField
           label="City"
@@ -78,7 +80,9 @@ export const PaymentPage = () => {
         />
       </Stack>
       <FormControl>
-        <Typography variant="h5">Payment method</Typography>
+        <Typography variant="h2" fontSize={25} fontWeight="bold">
+          Payment method
+        </Typography>
         <RadioGroup
           aria-labelledby="demo-controlled-radio-buttons-group"
           name="controlled-radio-buttons-group"
@@ -92,7 +96,12 @@ export const PaymentPage = () => {
       </FormControl>
       <Button
         variant="contained"
-        sx={{ borderRadius: 4, width: "fit-content", alignSelf: "center" }}
+        sx={{
+          borderRadius: 4,
+          width: "fit-content",
+          alignSelf: "center",
+          fontWeight: "bold",
+        }}
         onClick={handleOrder}
       >
         Order
@@ -102,7 +111,7 @@ export const PaymentPage = () => {
           onClose={handleClose}
           severity="success"
           variant="filled"
-          sx={{ width: "100%" }}
+          sx={{ width: "100%", fontWeight: "bold" }}
         >
           We've received your order!
         </Alert>

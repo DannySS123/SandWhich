@@ -9,17 +9,22 @@ interface ItemCardProps {
 
 export default function ItemCard({ burger }: ItemCardProps) {
   return (
-    <Stack
-      sx={{ background: "orange", p: 2, borderRadius: 4, alignItems: "center" }}
-    >
-      <Link to={`burger/${burger.id}`}>
+    <Link to={`burger/${burger.id}`} style={{ textDecoration: "none" }}>
+      <Stack
+        sx={{
+          background: "orange",
+          p: 2,
+          borderRadius: 4,
+          alignItems: "center",
+        }}
+      >
         <img
           src={burger.picPath ?? viteLogo}
           className="logo"
           alt="Vite logo"
         />
-        <Typography>{burger.name}</Typography>
-      </Link>
-    </Stack>
+        <Typography fontWeight="bold">{burger.name}</Typography>
+      </Stack>
+    </Link>
   );
 }

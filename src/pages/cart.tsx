@@ -11,9 +11,11 @@ export const Cart = () => {
   const sumPrice = cart.reduce((sum, current) => (sum += current.price), 0);
 
   return (
-    <Stack gap={2}>
-      <Typography variant="h5">Your cart</Typography>
-      <Typography>Items</Typography>
+    <Stack gap={1}>
+      <Typography variant="h1" fontSize={25} fontWeight="bold">
+        Your cart
+      </Typography>
+      <Typography fontWeight="bold">Items</Typography>
       <Stack>
         {cart.map((item) => (
           <Stack
@@ -43,14 +45,19 @@ export const Cart = () => {
         )}
       </Stack>
       <Stack flexDirection="row" justifyContent="space-between">
-        <Typography>Total:</Typography>
-        <Typography>{sumPrice}$</Typography>
+        <Typography fontWeight="bold">Total:</Typography>
+        <Typography fontWeight="bold">{sumPrice}$</Typography>
       </Stack>
       <Button
         onClick={() => navigate("/payment")}
         variant="contained"
         disabled={cart.length === 0}
-        sx={{ borderRadius: 4, width: "fit-content", alignSelf: "center" }}
+        sx={{
+          borderRadius: 4,
+          width: "fit-content",
+          alignSelf: "center",
+          fontWeight: "bold",
+        }}
       >
         Go to payment
       </Button>

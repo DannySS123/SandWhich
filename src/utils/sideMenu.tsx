@@ -54,7 +54,7 @@ export default function SideMenu() {
   return (
     <div>
       <Button onClick={toggleDrawer(true)}>
-        <Menu />
+        <Menu sx={{ color: "white" }} />
       </Button>
       <Drawer
         PaperProps={{ sx: { mt: 6.5 } }}
