@@ -20,39 +20,6 @@ function App() {
     setBurgers(getBurgers(type));
   };
 
-  const mockBurgers = [
-    "Hamburger",
-    "Cheeseburger",
-    "Vegan Burger",
-    "Spicy Burger",
-    "Hamburger",
-    "Cheeseburger",
-    "Vegan Burger",
-    "Spicy Burger",
-    "Hamburger",
-    "Cheeseburger",
-    "Vegan Burger",
-    "Spicy Burger",
-    "Hamburger",
-    "Cheeseburger",
-    "Vegan Burger",
-    "Spicy Burger",
-  ];
-
-  const mockCoupons = [
-    "Drink Coupon",
-    "Large Meal",
-    "Family Pack",
-    "Drink Coupon",
-    "Large Meal",
-    "Family Pack",
-    "Drink Coupon",
-    "Large Meal",
-    "Family Pack",
-  ];
-
-  const mockFavorites = ["Spicy Burger", "Family Pack"];
-
   return (
     <>
       <Stack

@@ -22,7 +22,7 @@ import { Hamburger } from "../types";
 import { CartContext } from "../contexts/cart-context";
 
 export default function ItemPage() {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(1);
   const nav = useNavigate();
   const [favorite, setFavorite] = useState(false);
   const { id } = useParams();
@@ -37,7 +37,7 @@ export default function ItemPage() {
   }, [getBurger, id]);
 
   const handleRemove = () => {
-    if (count > 0) {
+    if (count > 1) {
       setCount(count - 1);
     }
   };
