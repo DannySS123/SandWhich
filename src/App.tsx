@@ -1,35 +1,33 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+
+import "./App.css";
+import { Chip, Stack } from "@mui/material";
+import ItemCard from "./utils/ItemCard";
 
 function App() {
-  const [count, setCount] = useState(0)
-
+  const [count, setCount] = useState(0);
+  const handleClick = () => {
+    console.info("You clicked the Chip.", count, setCount);
+  };
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Stack
+        sx={{ flexDirection: "row", justifyContent: "space-evenly", my: 1 }}
+      >
+        <Chip label="Regular" onClick={handleClick} />
+        <Chip label="Coupons" onClick={handleClick} />
+        <Chip label="Favorites" onClick={handleClick} />
+      </Stack>
+      <Stack sx={{ flexWrap: "wrap", flexDirection: "row", gap: 1 }}>
+        <ItemCard title="Hamburger" logo={""} />
+        <ItemCard title="Hamburger" logo={""} />
+        <ItemCard title="Hamburger" logo={""} />
+        <ItemCard title="Hamburger" logo={""} />
+        <ItemCard title="Hamburger" logo={""} />
+        <ItemCard title="Hamburger" logo={""} />
+      </Stack>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
