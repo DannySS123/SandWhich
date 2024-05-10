@@ -12,7 +12,10 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
   const addToFavourites = (b: Hamburger) => {
     setFavourites([...favourites, b]);
   };
-  const getBurger = (id: number) => burgers.find((b) => b.id === id);
+  const removeFromFavourites = (b: Hamburger) => {
+    setFavourites(favourites.filter((burger) => burger.id !== b.id));
+  };
+  const getBurger = (id: string) => burgers.find((b) => b.id === parseInt(id));
   const getBurgers = (t: HamburgerType) =>
     t === HamburgerType.FAVOURITE
       ? favourites
@@ -26,6 +29,7 @@ export const CartProvider = ({ children }: PropsWithChildren) => {
         getBurgers,
         addToFavourites,
         cart,
+        removeFromFavourites,
       }}
     >
       {children}
