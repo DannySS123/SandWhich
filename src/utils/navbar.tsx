@@ -1,8 +1,12 @@
 import { Button, Stack, Typography } from "@mui/material";
 import { ShoppingCart } from "@mui/icons-material";
 import SideMenu from "./sideMenu";
+import { useContext } from "react";
+import { CartContext } from "../contexts/cart-context";
 
 export default function Navbar() {
+  const { cart } = useContext(CartContext);
+
   return (
     <Stack
       sx={{
@@ -14,9 +18,12 @@ export default function Navbar() {
       }}
     >
       <SideMenu />
-      <Typography variant="h5">SandWhich</Typography>
+      <Button href="/">
+        <Typography variant="h5">SandWhich</Typography>
+      </Button>
       <Button href="/cart">
-        <ShoppingCart sx={{ mr: 2 }} />
+        <ShoppingCart />
+        <Typography sx={{ mr: 1 }}>{cart.length}</Typography>
       </Button>
     </Stack>
   );
