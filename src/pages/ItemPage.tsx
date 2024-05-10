@@ -1,11 +1,18 @@
-import { List, ListItem, Stack, Typography } from "@mui/material";
+import {
+  List,
+  ListItem,
+  Stack,
+  Typography,
+  IconButton as MuiIconButton,
+} from "@mui/material";
 import viteLogo from "/vite.svg";
 import IconButton from "../utils/iconButton";
-import { Add, Remove, Edit } from "@mui/icons-material";
+import { Add, Remove, Edit, Star, StarBorder } from "@mui/icons-material";
 import { useState } from "react";
 
 export default function ItemPage() {
   const [count, setCount] = useState(0);
+  const [favorite, setFavorite] = useState(false);
 
   const handleRemove = () => {
     if (count > 0) {
@@ -27,7 +34,12 @@ export default function ItemPage() {
         <Stack flexDirection="row" gap={4}>
           <img src={viteLogo} className="logo" alt="Vite logo" width="150px" />
           <Stack>
-            <Typography>Hamburger</Typography>
+            <Stack flexDirection="row" alignItems="center">
+              <MuiIconButton onClick={() => setFavorite(!favorite)}>
+                {favorite ? <Star /> : <StarBorder />}
+              </MuiIconButton>
+              <Typography>Hamburger</Typography>
+            </Stack>
             <List>
               <ListItem>Bun</ListItem>
               <ListItem>Meat</ListItem>
