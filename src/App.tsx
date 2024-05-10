@@ -5,6 +5,7 @@ import { Chip, Grid, Stack, Typography } from "@mui/material";
 import ItemCard from "./utils/ItemCard";
 import { Hamburger, HamburgerType } from "./types";
 import { CartContext } from "./contexts/cart-context";
+import NewBurgerCard from "./utils/newBurgerCard";
 
 function App() {
   const [activeChip, setActiveChip] = useState(HamburgerType.REGULAR);
@@ -39,6 +40,11 @@ function App() {
         ))}
       </Stack>
       <Grid container spacing={2}>
+        {activeChip === HamburgerType.REGULAR && (
+          <Grid item xs={6} key={-1}>
+            <NewBurgerCard />
+          </Grid>
+        )}
         {burgers.map((burger) => (
           <Grid item xs={6} key={burger.id}>
             <ItemCard burger={burger} />
