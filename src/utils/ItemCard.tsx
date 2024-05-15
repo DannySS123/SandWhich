@@ -20,6 +20,7 @@ export default function ItemCard({ burger }: ItemCardProps) {
       >
         <img
           src={burger.picPath ?? viteLogo}
+          width="100px"
           className="logo"
           alt="Vite logo"
         />
