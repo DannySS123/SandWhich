@@ -32,7 +32,7 @@ export default function CartPage() {
     <Stack height="100%" justifyContent="space-between">
       <Stack gap={4}>
         <Stack flexDirection="row" gap={4}>
-          <img src={viteLogo} className="logo" alt="Vite logo" width="150px" />
+          <img width="100px" src={viteLogo} className="logo" alt="Vite logo" width="150px" />
           <Stack>
             <Stack flexDirection="row" alignItems="center">
               <MuiIconButton onClick={() => setFavorite(!favorite)}>
