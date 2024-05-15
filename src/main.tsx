@@ -10,6 +10,8 @@ import { BurgerEdit } from "./pages/burger-edit.tsx";
 import { CartProvider } from "./contexts/cart-provider.tsx";
 import { PaymentPage } from "./pages/paymentPage.tsx";
 import { NewPage } from "./pages/newPage.tsx";
+import { Help } from "./pages/help.page.tsx";
+import { AboutUs } from "./pages/about-us.page.tsx";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
   <React.StrictMode>
@@ -21,6 +23,8 @@ ReactDOM.createRoot(document.getElementById("root")!).render(
               <Route index element={<App />} />
               <Route path="cart" element={<Cart />} />
               <Route path="payment" element={<PaymentPage />} />
+              <Route path="help" element={<Help />} />
+              <Route path="about" element={<AboutUs />} />
               <Route path="new" element={<NewPage />} />
               <Route path="burger/:id">
                 <Route index element={<ItemPage />} />
