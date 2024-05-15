@@ -31,6 +31,7 @@ export const Cart = () => {
                 src={item.picPath ?? viteLogo}
                 className="logo"
                 alt="Vite logo"
+                width="100px"
               />
               <p>{item.name}</p>
             </Stack>
