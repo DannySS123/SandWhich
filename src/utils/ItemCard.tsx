@@ -21,8 +21,10 @@ export default function ItemCard({ burger }: ItemCardProps) {
         <img
           src={burger.picPath ?? viteLogo}
           width="100px"
+          height="100px"
           className="logo"
           alt={burger.name}
+          style={{objectFit: 'contain', backgroundColor: 'white'}}
         />
         <Typography fontWeight="bold">{burger.name}</Typography>
         <Typography fontWeight="bold">${burger.price}</Typography>

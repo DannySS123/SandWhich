@@ -89,9 +89,12 @@ export default function ItemPage() {
           <img
             src={burger?.picPath ?? viteLogo}
             className="logo"
-            alt="Vite logo"
+            alt={burger?.name || ''}
             width="150px"
+            height="150px"
+            style={{ objectFit: 'contain', backgroundColor: 'white' }}
           />
+
           <Stack>
             <Stack flexDirection="row" alignItems="center">
               <Typography variant="h1" fontSize={25} fontWeight="bold">
@@ -112,7 +115,7 @@ export default function ItemPage() {
           </Stack>
         </Stack>
         <Typography>{burger?.description}</Typography>
-        <Typography>Price: {burger?.price}$</Typography>
+        <Typography>Price: ${burger?.price}</Typography>
       </Stack>
       <Stack justifyContent="space-between" flexDirection="row" mt={2}>
         <Stack flexDirection="row" alignItems="center" gap={1}>

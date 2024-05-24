@@ -16,15 +16,16 @@ export default function NewBurgerCard() {
         <Stack
           sx={{
             background: "white",
-            height: "35px",
-            width: "35px",
+            height: "100px",
+            width: "100px",
             alignItems: "center",
             justifyContent: "center",
           }}
         >
-          <Add style={{ width: "50px" }} />
+          <Add fontSize="large" />
         </Stack>
         <Typography fontWeight="bold">Create burger</Typography>
+        <Typography fontWeight="bold">$$</Typography>
       </Stack>
     </Link>
   );

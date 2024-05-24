@@ -97,7 +97,7 @@ export const BurgerEdit = () => {
             alignItems="center"
           >
             <Stack flexDirection="row" alignItems="center" gap={2}>
-              <img src={t.picPath} />
+              <img src={t.picPath} width="100px" />
               <Typography>{t.name}</Typography>
             </Stack>
             <Checkbox
