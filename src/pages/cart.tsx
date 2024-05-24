@@ -6,16 +6,31 @@ import { useNavigate } from "react-router-dom";
 import { Delete } from "@mui/icons-material";
 
 export const Cart = () => {
-  const { cart, removeFromCart } = useContext(CartContext);
+  const { cart, removeFromCart, clearCart } = useContext(CartContext);
   const navigate = useNavigate();
 
   const sumPrice = cart.reduce((sum, current) => (sum += current.price), 0);
 
   return (
     <Stack gap={1}>
+      <Stack flexDirection="row" justifyContent="space-between" alignItems="center">
       <Typography variant="h1" fontSize={25} fontWeight="bold">
         Your cart
       </Typography>
+      <Button
+        onClick={clearCart}
+        variant="contained"
+        color="error"
+        disabled={cart.length === 0}
+        sx={{
+          borderRadius: 4,
+          width: "fit-content",
+          alignSelf: "center",
+        }}
+      >
+        Clear cart
+      </Button>
+      </Stack>
       <Typography fontWeight="bold">Items</Typography>
       <Stack>
         {cart.map((item) => (
@@ -30,7 +45,7 @@ export const Cart = () => {
               <img
                 src={item.picPath ?? viteLogo}
                 className="logo"
-                alt="Vite logo"
+                alt={item.name}
                 width="100px"
               />
               <p>{item.name}</p>

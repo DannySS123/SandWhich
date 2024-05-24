@@ -4,7 +4,7 @@ import { Add } from "@mui/icons-material";
 
 export default function NewBurgerCard() {
   return (
-    <Link to={`new`} style={{ textDecoration: "none" }}>
+    <Link to={`new`}>
       <Stack
         sx={{
           background: "orange",
@@ -24,7 +24,7 @@ export default function NewBurgerCard() {
         >
           <Add style={{ width: "50px" }} />
         </Stack>
-        <Typography fontWeight="bold">Create</Typography>
+        <Typography fontWeight="bold">Create burger</Typography>
       </Stack>
     </Link>
   );

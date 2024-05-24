@@ -22,9 +22,10 @@ export default function ItemCard({ burger }: ItemCardProps) {
           src={burger.picPath ?? viteLogo}
           width="100px"
           className="logo"
-          alt="Vite logo"
+          alt={burger.name}
         />
         <Typography fontWeight="bold">{burger.name}</Typography>
+        <Typography fontWeight="bold">${burger.price}</Typography>
       </Stack>
     </Link>
   );
