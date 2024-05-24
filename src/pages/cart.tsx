@@ -14,22 +14,22 @@ export const Cart = () => {
   return (
     <Stack gap={1}>
       <Stack flexDirection="row" justifyContent="space-between" alignItems="center">
-      <Typography variant="h1" fontSize={25} fontWeight="bold">
-        Your cart
-      </Typography>
-      <Button
-        onClick={clearCart}
-        variant="contained"
-        color="error"
-        disabled={cart.length === 0}
-        sx={{
-          borderRadius: 4,
-          width: "fit-content",
-          alignSelf: "center",
-        }}
-      >
-        Clear cart
-      </Button>
+        <Typography variant="h1" fontSize={25} fontWeight="bold">
+          Your cart
+        </Typography>
+        <Button
+          onClick={clearCart}
+          variant="contained"
+          color="error"
+          disabled={cart.length === 0}
+          sx={{
+            borderRadius: 4,
+            width: "fit-content",
+            alignSelf: "center",
+          }}
+        >
+          Clear cart
+        </Button>
       </Stack>
       <Typography fontWeight="bold">Items</Typography>
       <Stack>
@@ -41,17 +41,19 @@ export const Cart = () => {
             p={1}
             key={item.id}
           >
-            <Stack flexDirection="row" gap={1}>
+            <Stack flexDirection="row" gap={1} alignItems="center">
               <img
                 src={item.picPath ?? viteLogo}
                 className="logo"
                 alt={item.name}
                 width="100px"
+                height="100px"
+                style={{ objectFit: 'contain', backgroundColor: 'white' }}
               />
-              <p>{item.name}</p>
+              <p style={{ fontWeight: 'bold' }}>{item.name}</p>
             </Stack>
-            <Stack flexDirection="row" gap={1}>
-              <p>{item.price}$</p>
+            <Stack flexDirection="row" gap={1} alignItems="center">
+              <p style={{ fontWeight: 'bold' }}>${item.price}</p>
               <IconButton onClick={() => removeFromCart(item)}>
                 <Delete color="error" />
               </IconButton>
