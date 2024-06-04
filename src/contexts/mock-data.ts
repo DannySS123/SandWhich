@@ -131,4 +131,14 @@ export const burgers: Hamburger[] = [
     bunType: "Normal",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
   },
+      {
+    id: "8",
+    name: "Nothing burger",
+    description: "Just the bun for picky people!",
+    price: 8,
+    toppings: [],
+    type: HamburgerType.REGULAR,
+    bunType: "Normal",
+    picPath: "https://i.imgur.com/R0o6Daa.jpg"
+  },
 ];
