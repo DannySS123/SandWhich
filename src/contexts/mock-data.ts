@@ -124,10 +124,10 @@ export const burgers: Hamburger[] = [
     {
     id: "7",
     name: "Daily menu",
-    description: "An option olny for this day!",
+    description: "An option only for this day!",
     price: 5,
     toppings: [Chicken, Mayo],
-    type: HamburgerType.REGULAR,
+    type: HamburgerType.COUPON,
     bunType: "Normal",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
   },
