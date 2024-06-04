@@ -111,12 +111,22 @@ export const burgers: Hamburger[] = [
     bunType: "Wholewheat",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
   },
-      {
-    id: "5",
+  {
+    id: "6",
     name: "Everything Burger",
     description: "This burger has it all.",
     price: 15,
     toppings: [Chicken, Mayo, Lettuce, Tomato, Onion, Ketchup, Beef, Cheese, Spicy, VeganPatty],
+    type: HamburgerType.REGULAR,
+    bunType: "Normal",
+    picPath: "https://i.imgur.com/R0o6Daa.jpg"
+  },
+    {
+    id: "7",
+    name: "Daily menu",
+    description: "An option olny for this day!",
+    price: 5,
+    toppings: [Chicken, Mayo],
     type: HamburgerType.REGULAR,
     bunType: "Normal",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
