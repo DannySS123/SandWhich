@@ -106,7 +106,7 @@ export const burgers: Hamburger[] = [
     name: "Meat lover Burger",
     description: "A burger with all different types of meat.",
     price: 12,
-    toppings: [Beef, Lettuce, Spicy, VeganPatty, Lettuce, Tomato, Onion],
+    toppings: [Chicken, Mayo, Lettuce, Tomato, Ketchup, Beef, Spicy, VeganPatty],
     type: HamburgerType.Regular,
     bunType: "Wholewheat",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
@@ -116,7 +116,7 @@ export const burgers: Hamburger[] = [
     name: "Everything Burger",
     description: "This burger has it all.",
     price: 15,
-    toppings: [Beef, Lettuce, Spicy, VeganPatty, Lettuce, Tomato, Onion, Ketchup, Chicken, Cheese, Mayo],
+    toppings: [Chicken, Mayo, Lettuce, Tomato, Onion, Ketchup, Beef, Cheese, Spicy, VeganPatty],
     type: HamburgerType.Regular,
     bunType: "Wholewheat",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
