@@ -107,7 +107,7 @@ export const burgers: Hamburger[] = [
     description: "A burger with all different types of meat.",
     price: 12,
     toppings: [Chicken, Mayo, Lettuce, Tomato, Ketchup, Beef, Spicy, VeganPatty],
-    type: HamburgerType.Regular,
+    type: HamburgerType.REGULAR,
     bunType: "Wholewheat",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
   },
@@ -117,8 +117,8 @@ export const burgers: Hamburger[] = [
     description: "This burger has it all.",
     price: 15,
     toppings: [Chicken, Mayo, Lettuce, Tomato, Onion, Ketchup, Beef, Cheese, Spicy, VeganPatty],
-    type: HamburgerType.Regular,
-    bunType: "Wholewheat",
+    type: HamburgerType.REGULAR,
+    bunType: "Normal",
     picPath: "https://i.imgur.com/R0o6Daa.jpg"
   },
 ];
